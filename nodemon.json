@@ -1,0 +1,11 @@
+{
+    "ignore": [
+        "sessions/",
+        "src/public/*",
+        "auth_info/*"
+    ],
+    "watch": [
+        "src"
+    ],
+    "ext": "js,json,html,css"
+}

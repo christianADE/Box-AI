@@ -1,0 +1,44 @@
+# Fichiers et dossiers Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Variables d'environnement
+.env
+.env.local
+.env.*.local
+
+# Sessions WhatsApp (contient des données sensibles)
+sessions/
+*.session.json
+
+# Logs
+logs/
+*.log
+
+# Fichiers de test temporaires
+test-db.js
+diagnose.js
+fix_models.js
+force_groq.js
+update_groq_model.js
+
+# Dossier BOT-SMART (ancien projet)
+BOT-SMART/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build
+dist/
+build/

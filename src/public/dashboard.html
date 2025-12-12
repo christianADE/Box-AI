@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box-AI - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar: Configuration -->
+        <div class="card sidebar">
+            <h2>Configuration</h2>
+
+            <div class="status-box">
+                Statut: <span id="connection-status" class="status-badge status-disconnected">Checking...</span>
+            </div>
+
+            <div class="qr-container" id="qr-display">
+                <p>Chargement du QR...</p>
+            </div>
+
+            <form id="ai-config-form">
+                <h3>Paramètres IA</h3>
+                <select id="ai-provider">
+                    <option value="gpt">OpenAI (GPT)</option>
+                    <option value="gemini">Google Gemini</option>
+                    <option value="groq">Groq (Llama 3)</option>
+                </select>
+                <input type="password" id="api-key" placeholder="Clé API (sk-..., AIza..., ou gsk_...)" required>
+                <textarea id="custom-prompt" placeholder="Prompt Système (ex: Tu es un assistant commercial...)"
+                    rows="4"></textarea>
+
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <input type="checkbox" id="auto-reply" style="width: auto; margin: 0;">
+                    Réponse Automatique activée
+                </label>
+
+                <button type="submit">Sauvegarder</button>
+            </form>
+
+            <button id="logout-btn"
+                style="background: var(--card-bg); border: 1px solid var(--border-color); margin-top: auto;">Déconnexion</button>
+        </div>
+
+        <!-- Main Content: Chat History -->
+        <div class="card main-content">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>Historique des Messages</h2>
+                <button id="refresh-msgs"
+                    style="width: auto; padding: 0.5rem 1rem; font-size: 0.8rem;">Actualiser</button>
+            </div>
+
+            <div class="chat-history" id="chat-history">
+                <!-- Messages will be injected here -->
+                <div style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Aucun message pour le
+                    moment</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box-AI - Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card" id="login-card">
+            <h1>Box-AI</h1>
+            <h2
+                style="font-size: 1.2rem; margin-top: -1rem; color: var(--text-muted); background: none; -webkit-text-fill-color: initial;">
+                Connexion</h2>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Mot de passe" required>
+                <button type="submit">Se connecter</button>
+            </form>
+            <div class="link">
+                Pas encore de compte? <a href="#" id="show-register">S'inscrire</a>
+            </div>
+        </div>
+
+        <div class="card" id="register-card" style="display: none;">
+            <h1>Box-AI</h1>
+            <h2
+                style="font-size: 1.2rem; margin-top: -1rem; color: var(--text-muted); background: none; -webkit-text-fill-color: initial;">
+                Inscription</h2>
+            <form id="register-form">
+                <input type="text" id="reg-name" placeholder="Nom complet" required>
+                <input type="email" id="reg-email" placeholder="Email" required>
+                <input type="password" id="reg-password" placeholder="Mot de passe" required>
+                <input type="text" id="reg-company" placeholder="Entreprise (Optionnel)">
+                <button type="submit">Créer un compte</button>
+            </form>
+            <div class="link">
+                Déjà un compte? <a href="#" id="show-login">Se connecter</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

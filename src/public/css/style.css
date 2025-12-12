@@ -1,0 +1,196 @@
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #ef4444;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-color: #1e293b;
+  --text-muted: #64748b;
+  --input-bg: #f1f5f9;
+  --border-color: #e2e8f0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  width: 95%;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  height: 90vh;
+}
+
+.card {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  color: var(--text-color);
+  font-size: 1rem;
+  box-sizing: border-box;
+  /* Fix padding issue */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--primary-color);
+  border-color: transparent;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 600;
+}
+
+button:hover {
+  background: var(--secondary-color);
+}
+
+.link {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.link a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link a:hover {
+  color: var(--secondary-color);
+}
+
+/* Dashboard Specifics */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  background: var(--input-bg);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  border: 2px dashed var(--border-color);
+}
+
+.qr-container img {
+  width: 100%;
+  max-width: 250px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-connected {
+  background-color: #22c55e;
+  color: #fff;
+}
+
+.status-disconnected {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.status-scanning {
+  background-color: #eab308;
+  color: #fff;
+}
+
+.chat-history {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.message-item {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--input-bg);
+  max-width: 80%;
+}
+
+.msg-in {
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
+  background: #e0e7ff;
+}
+
+.msg-out {
+  align-self: flex-end;
+  background: var(--primary-color);
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+.msg-ai {
+  background: var(--primary-color);
+  color: white;
+}
