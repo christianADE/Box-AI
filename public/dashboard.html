@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box-AI | Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+    <div class="dashboard-grid">
+        <!-- Sidebar -->
+        <aside class="sidebar glass">
+            <h1>Box-AI</h1>
+            
+            <div class="status-indicator">
+                <div id="status-dot" class="dot dot-disconnected"></div>
+                <div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Statut Backend</div>
+                    <div id="connection-status" style="font-weight: 600;">DAcconnectAc</div>
+                </div>
+            </div>
+
+            <div class="qr-card" id="qr-display">
+                <div style="text-align: center; color: var(--bg-dark);">
+                    <p>Initialisation du QR...</p>
+                </div>
+            </div>
+
+            <form id="ai-config-form" style="margin-top: auto;">
+                <label>Moteur d'Intelligence</label>
+                <select id="ai-provider">
+                    <option value="groq">Groq (Llama 3) - Plus rapide</option>
+                    <option value="gpt">OpenAI (GPT-4)</option>
+                    <option value="gemini">Google Gemini</option>
+                </select>
+
+                <label>ClAc API</label>
+                <input type="password" id="api-key" placeholder="••••••••••••••••">
+
+                <label>Personnalisation de l'IA</label>
+                <textarea id="custom-prompt" rows="3" placeholder="Ex: Tu es un assistant expert..."></textarea>
+
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin: 10px 0;">
+                    <input type="checkbox" id="auto-reply" style="width: auto;">
+                    <span>RAcponsse Automatique</span>
+                </label>
+
+                <button type="submit">Mettre A jour la config</button>
+            </form>
+
+            <button id="logout-btn" style="background: transparent; border: 1px solid var(--border); margin-top: 20px;">
+                Quitter la session
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-view glass">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2 style="text-align: left; margin: 0;">Supervision Directe</h2>
+                <button id="refresh-msgs" style="width: auto; padding: 8px 16px; font-size: 0.9rem;">Actualiser</button>
+            </header>
+
+            <div class="chat-container" id="chat-history">
+                <!-- Messages will be injected here -->
+                <div style="text-align: center; margin-top: 50px; color: var(--text-muted);">
+                    En attente de nouveaux messages...
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

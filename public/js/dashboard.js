@@ -40,34 +40,30 @@ async function checkStatus() {
         const data = await res.json();
 
         const badge = document.getElementById('connection-status');
+        const dot = document.getElementById('status-dot');
         const qrContainer = document.getElementById('qr-display');
 
         if (data.data.isConnected) {
-            badge.textContent = 'Connecté';
-            badge.className = 'status-badge status-connected';
-            qrContainer.innerHTML = '<p style="color: #22c55e; font-size: 3rem;">✓</p><p>WhatsApp Connecté</p>';
+            badge.textContent = 'ConnectAc';
+            dot.className = 'dot dot-connected';
+            qrContainer.innerHTML = '<div style="text-align: center;"><p style="color: #10b981; font-size: 4rem; margin: 0;">✓</p><p style="color: #64748b;">ConnectAc avec succA¨s</p></div>';
         } else {
-            badge.textContent = 'Déconnecté';
-            badge.className = 'status-badge status-disconnected';
+            badge.textContent = 'DAcconnectAc';
+            dot.className = 'dot dot-disconnected';
 
             // If disconnected, try to get QR
             const qrRes = await fetch(`${API_URL}/whatsapp/qr`, { headers });
-            const qrData = await qrRes.json();
-
-            if (qrData.success && qrData.data && qrData.data.qr) {
-                // Clear container and show updated QR
-                qrContainer.innerHTML = '';
-
-                // Backend returns a Data URI image, so we just display it
-                const img = document.createElement('img');
-                img.src = qrData.data.qr;
-                img.alt = 'Scan Me';
-                img.style.width = '100%';
-                img.style.maxWidth = '250px';
-
-                qrContainer.appendChild(img);
+            if (qrRes.ok) {
+                const qrData = await qrRes.json();
+                if (qrData.success && qrData.data && qrData.data.qr) {
+                    qrContainer.innerHTML = '';
+                    const img = document.createElement('img');
+                    img.src = qrData.data.qr;
+                    img.alt = 'Scan Me';
+                    qrContainer.appendChild(img);
+                }
             } else if (qrRes.status === 202) {
-                qrContainer.innerHTML = '<p>Initialisation...</p>';
+                qrContainer.innerHTML = '<p style="color: #64748b;">Initialisation...</p>';
             }
         }
     } catch (err) {
@@ -132,17 +128,18 @@ async function loadMessages() {
         if (data.success && data.data.messages.length > 0) {
             container.innerHTML = '';
             data.data.messages.reverse().forEach(msg => {
+                const isOutbound = msg.direction === 'outbound' || msg.isAIResponse;
                 const div = document.createElement('div');
-                div.className = `message-item ${msg.direction === 'outbound' ? 'msg-out' : 'msg-in'} ${msg.isAIResponse ? 'msg-ai' : ''}`;
+                div.className = `message ${isOutbound ? 'msg-sent' : 'msg-received'}`;
 
                 const time = new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const sender = msg.isAIResponse ? '🤖 IA' : (msg.direction === 'outbound' ? 'Moi' : msg.from.split('@')[0]);
 
                 div.innerHTML = `
-                    <div style="font-size: 0.8rem; margin-bottom: 0.2rem; opacity: 0.8;">
-                        ${msg.isAIResponse ? '🤖 IA' : (msg.direction === 'outbound' ? 'Moi' : msg.from.split('@')[0])} 
-                        • ${time}
+                    <div class="msg-meta">
+                        ${sender} • ${time}
                     </div>
-                    <div>${msg.content}</div>
+                    <div class="msg-content">${msg.content}</div>
                 `;
                 container.appendChild(div);
             });
