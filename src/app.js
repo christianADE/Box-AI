@@ -22,7 +22,7 @@ const app = express();
 
 // Middlewares
 app.use(cors({
-    origin: 'https://box-ai.miabesite.site',
+    origin: 'https://smartx.miabesite.site',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     optionsSuccessStatus: 200
