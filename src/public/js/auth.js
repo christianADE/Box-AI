@@ -1,4 +1,4 @@
-const API_URL = 'https://api-bot.miabesite.site';
+const API_URL = '/api';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check if already logged in

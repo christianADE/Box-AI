@@ -1,4 +1,4 @@
-const API_URL = 'https://api-bot.miabesite.site';
+const API_URL = '/api';
 const token = localStorage.getItem('token');
 
 if (!token) {
