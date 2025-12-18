@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function checkStatus() {
     try {
         const res = await fetch(`${API_URL}/whatsapp/status`, { headers });
+        if (!res.ok) throw new Error('Network response was not ok');
         const data = await res.json();
 
         const badge = document.getElementById('connection-status');
@@ -77,6 +78,7 @@ async function checkStatus() {
 async function loadConfig() {
     try {
         const res = await fetch(`${API_URL}/ai/config`, { headers });
+        if (!res.ok) throw new Error('Network response was not ok');
         const data = await res.json();
 
         if (data.success && data.data) {
@@ -122,6 +124,7 @@ async function saveConfig() {
 async function loadMessages() {
     try {
         const res = await fetch(`${API_URL}/messages?limit=20`, { headers });
+        if (!res.ok) throw new Error('Network response was not ok');
         const data = await res.json();
 
         const container = document.getElementById('chat-history');
@@ -150,3 +153,10 @@ async function loadMessages() {
         console.error('Load messages failed', err);
     }
 }
+
+// Compatibility Alias for reported error
+async function fetchDashboardData() {
+    console.log('[Debug] fetchDashboardData called');
+    return await checkStatus();
+}
+
